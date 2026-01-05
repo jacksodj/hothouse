@@ -21,8 +21,11 @@ private:
     float depth;      // Modulation depth (0.0 to 1.0)
     float mix;        // Dry/wet mix
     
+    // Generate triangle wave LFO (-1 to +1)
+    // Uses phase wrapping and absolute value to create symmetric triangle
     float getLFO() {
-        // Triangle wave LFO
+        // Triangle wave formula: converts sawtooth to triangle
+        // by taking absolute value of centered sawtooth
         float value = 2.0f * fabsf(2.0f * (lfoPhase - floorf(lfoPhase + 0.5f))) - 1.0f;
         return value;
     }
