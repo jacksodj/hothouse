@@ -7,6 +7,8 @@
 
 #include "hothouse.h"
 
+#define MAX_FUZZ_GAIN 200.0f
+
 class Fuzz : public HothouseEffect {
 private:
     float fuzz;
@@ -34,7 +36,7 @@ public:
     
     float process(float inputSample) override {
         // Heavy pre-gain
-        float amplified = inputSample * (1.0f + fuzz * 199.0f);
+        float amplified = inputSample * (1.0f + fuzz * (MAX_FUZZ_GAIN - 1.0f));
         
         // Asymmetric clipping
         float clipped = asymmetricClip(amplified);

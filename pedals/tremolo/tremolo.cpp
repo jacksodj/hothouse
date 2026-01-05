@@ -8,6 +8,10 @@
 #include "hothouse.h"
 #include <math.h>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 class Tremolo : public HothouseEffect {
 private:
     float rate;       // LFO rate in Hz
@@ -17,7 +21,7 @@ private:
     
     float getLFO() {
         // Sine wave LFO
-        return sinf(2.0f * 3.14159265f * phase);
+        return sinf(2.0f * M_PI * phase);
     }
     
 public:

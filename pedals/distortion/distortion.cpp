@@ -7,6 +7,8 @@
 
 #include "hothouse.h"
 
+#define MAX_DISTORTION_GAIN 100.0f
+
 class Distortion : public HothouseEffect {
 private:
     float gain;
@@ -55,7 +57,7 @@ public:
         float sample = dcBlock(inputSample);
         
         // Apply gain
-        float amplified = sample * (1.0f + gain * 99.0f);
+        float amplified = sample * (1.0f + gain * (MAX_DISTORTION_GAIN - 1.0f));
         
         // Hard clipping
         float clipped = hardClip(amplified, 0.7f);
